@@ -14,4 +14,5 @@ console.log(string);
 let someString = 'String';
 console.log(someString[1]);
 someString[1] = 'w';
-``
+
+// make something
