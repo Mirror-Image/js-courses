@@ -1,18 +1,19 @@
-// Numbers
+const counter = function(sumValue) {
+    let count = 0;
+    return function() {
+        console.log(count += sumValue);
+    };
+};
 
-let number = 7.8;
-let number2 = Infinity;
-let number3 = -Infinity;
-let number4 = NaN;
+const addFive = counter(5);
+const addFive2 = counter(5);
+const addSeven = counter(7);
 
-// String
-// let string = 'Hello World';
-let fullName = () => 'Brian Boyanger';
-let string = `Hello, ${fullName()}`; // Hello, Brian Boyanger
-console.log(string);
+addFive();
+addFive();
+addFive();
+addFive();
 
-let someString = 'String';
-console.log(someString[1]);
-someString[1] = 'w';
+addSeven();
 
-// make something
+addFive2();
