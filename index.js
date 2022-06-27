@@ -1,18 +1,42 @@
-// Numbers
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
 
-let number = 7.8;
-let number2 = Infinity;
-let number3 = -Infinity;
-let number4 = NaN;
+Person.prototype.talk = function() {
+  console.log(`${this.name} is talking`);
+}
 
-// String
-// let string = 'Hello World';
-let fullName = () => 'Brian Boyanger';
-let string = `Hello, ${fullName()}`; // Hello, Brian Boyanger
-console.log(string);
+Person.prototype.walk = function() {
+  console.log(`${this.name} is walking`);
+}
 
-let someString = 'String';
-console.log(someString[1]);
-someString[1] = 'w';
+// console.dir(Person);
 
-// make something
+function Employee(position, ...args) {
+  Person.apply(this, args);
+  this.position = position;
+}
+
+Employee.prototype = Object.create(Person.prototype);
+
+Employee.prototype.walk = function() {
+  console.log('Employee is walking');
+}
+
+Employee.prototype.constructor = Employee;
+
+// console.dir(Employee);
+
+const james = new Employee('developer', 'James', 25);
+
+
+// console.log(james);
+james.walk();
+james.talk();
+console.log(Object.getPrototypeOf(james) === Employee.prototype); // true
+
+console.log(james.__proto__ === Employee.prototype); // true
+console.log(james.__proto__.__proto__ === Person.prototype); // true
+console.log(james.__proto__.__proto__.__proto__ === Object.prototype); // true
+console.log(james.__proto__.__proto__.__proto__.__proto__ === null); // true
